@@ -1,0 +1,55 @@
+<header class="header">
+
+    <div class="logo">ID24</div>
+
+    <nav class="nav">
+      <a href="#product" class="nav-link">Product</a>
+      <a href="#solutions" class="nav-link">Solutions</a>
+      <a href="#industries" class="nav-link">Industries</a>
+      <a href="#about" class="nav-link">About</a>
+    </nav>
+
+
+    <div class="language-switcher">
+        <button class="lang-button" id="openPopup" aria-expanded="false" aria-haspopup="true">
+            <span class="lang-button-inner">
+            <img src="{{ ui.icons.language }}" alt="" class="language-icon">
+            <span class="lang-code">{{ uiLabels.lang_code }}</span>
+            <span class="arrow">⌃</span>
+            </span>
+        </button>
+
+        <div class="lang-popup" id="langPopup">
+            <a href="#" class="lang-option" data-lang="en">
+                🇬🇧 English
+            </a>
+
+            <a href="#" class="lang-option" data-lang="sv">
+                🇸🇪 Svenska
+            </a>
+        </div>
+        
+    </div>
+</header>
+
+<script>
+  const openPopupButton = document.getElementById("openPopup");
+  const langPopup = document.getElementById("langPopup");
+
+  openPopupButton.addEventListener("click", function () {
+    langPopup.classList.toggle("active");
+
+    const isOpen = langPopup.classList.contains("active");
+    openPopupButton.setAttribute("aria-expanded", isOpen);
+  });
+
+  document.addEventListener("click", function (event) {
+    const switcher = document.querySelector(".language-switcher");
+
+    if (!switcher.contains(event.target)) {
+      langPopup.classList.remove("active");
+      openPopupButton.setAttribute("aria-expanded", "false");
+    }
+  });
+</script>
+
