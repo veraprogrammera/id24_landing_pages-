@@ -1,0 +1,74 @@
+<section class="systems">
+
+  <div class="systems-header">
+    <h2>Complete hardware & software ecosystem</h2>
+    <p>Everything you need to deliver exceptional customer experiences</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="hardware">Hardware</button>
+    <button class="tab" data-tab="software">Software</button>
+    <button class="tab" data-tab="data">Data & Analytics</button>
+  </div>
+
+  <div class="tab-content active" id="hardware">
+    <div class="content-grid">
+      <div class="content-text">
+        <h3>Enterprise-grade hardware solutions</h3>
+
+        <div class="feature">
+          <span>🛡️</span>
+          <div>
+            <strong>Patented Dual Input Technology</strong>
+            <p>Unique technology that enables simultaneous customer and staff interactions</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <span>⚡</span>
+          <div>
+            <strong>High-performance displays</strong>
+            <p>4K touchscreens with fast response times</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="content-image">
+        <img src="/assets/hardware.jpg">
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="software">
+    <div class="content-grid">
+      <div class="content-image">
+        <img src="/assets/software.jpg">
+      </div>
+
+      <div class="content-text">
+        <h3>Powerful software platform</h3>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<script>
+  const tabs = document.querySelectorAll(".tab");
+  const contents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+
+      tabs.forEach(t => t.classList.remove("active"));
+      contents.forEach(c => c.classList.remove("active"));
+
+      tab.classList.add("active");
+
+      const target = document.getElementById(tab.dataset.tab);
+      target.classList.add("active");
+    });
+  });
+</script>
