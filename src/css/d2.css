@@ -3,9 +3,9 @@
    ========================================= */
 
 :root {
-  --coral: #F87B6B;
-  --coral-light: #FBAC9E;
-  --coral-dark: #E05A48;
+  --coral: #5BA4D9;
+  --coral-light: #8DC4F0;
+  --coral-dark: #3A7AB8;
   --bg: #EDECEA;
   --bg-white: #FFFFFF;
   --text: #1A1A1A;
@@ -1353,5 +1353,274 @@ ul {
   .btn-group {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+/* =========================================
+   DARK MODE
+   ========================================= */
+
+/* Dark mode wipe — light overlay that slides away top-to-bottom */
+body.dark-wipe::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  background: var(--bg-light, #EDECEA);
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.35s ease-in-out;
+}
+
+body.dark-wipe.dark-wipe-go::after {
+  clip-path: inset(100% 0 0 0);
+}
+
+/* Dark mode variable overrides */
+body.dark-mode {
+  --coral: #5BA4D9;
+  --coral-light: #8DC4F0;
+  --coral-dark: #3A7AB8;
+  --bg: #0D1117;
+  --bg-white: #161B22;
+  --text: #E6EDF3;
+  --text-muted: #8B949E;
+  --text-light: #6E7681;
+  --border: #30363D;
+  --color-resilient: #5BA4D9;
+  --color-failure: #1B3A5C;
+}
+
+/* Section overrides that would break with variable swap */
+body.dark-mode .section--coral {
+  background: #0A1628;
+}
+
+body.dark-mode .footer {
+  background: #010409;
+}
+
+body.dark-mode .solution__result-banner {
+  background: rgba(91, 164, 217, 0.15);
+}
+
+body.dark-mode .solution__result-banner__text {
+  color: var(--color-resilient);
+}
+
+body.dark-mode .solution__result-banner__label {
+  color: var(--color-resilient);
+  opacity: 0.6;
+}
+
+/* Nav in dark mode */
+body.dark-mode .nav {
+  background: #0D1117;
+  border-bottom-color: var(--border);
+}
+
+body.dark-mode .nav--scrolled {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Hero in dark mode */
+body.dark-mode .hero {
+  background: #0D1117;
+}
+
+body.dark-mode .hero__bg-img-wrap::after {
+  background: linear-gradient(to right, #0D1117 0%, transparent 45%);
+}
+
+/* Matrix rain canvas */
+.matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+/* D|2 Logo spotlight */
+body.dark-mode .hero__bg-text {
+  color: #5BA4D9;
+  opacity: 0.35;
+  text-shadow:
+    0 0 20px rgba(91, 164, 217, 0.6),
+    0 0 60px rgba(91, 164, 217, 0.4),
+    0 0 120px rgba(91, 164, 217, 0.2);
+  transition: opacity 1.5s ease, text-shadow 1.5s ease, color 1.5s ease;
+  animation: drift 9s ease-in-out infinite, spotlight-pulse 3s ease-in-out infinite;
+}
+
+@keyframes spotlight-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 20px rgba(91, 164, 217, 0.6),
+      0 0 60px rgba(91, 164, 217, 0.4),
+      0 0 120px rgba(91, 164, 217, 0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 30px rgba(91, 164, 217, 0.8),
+      0 0 80px rgba(91, 164, 217, 0.5),
+      0 0 160px rgba(91, 164, 217, 0.3);
+  }
+}
+
+/* ---- Semantic Color Coding ---- */
+
+/* Scenario: "Without D|2" = failure/broken */
+body.dark-mode .scenario-col--before .scenario-col__head {
+  background: var(--color-failure);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .scenario-col--before .scenario-col__body {
+  background: rgba(27, 58, 92, 0.2);
+}
+
+body.dark-mode .scenario-col--before .scenario-step__text {
+  opacity: 0.4;
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .scenario-col--before .scenario-step__arrow {
+  color: var(--color-failure);
+}
+
+/* Scenario: "With D|2" = resilient/alive */
+body.dark-mode .scenario-col--after .scenario-col__head {
+  background: var(--color-resilient);
+  color: white;
+}
+
+body.dark-mode .scenario-col--after .scenario-col__body {
+  background: rgba(91, 164, 217, 0.12);
+  border: 1px solid rgba(91, 164, 217, 0.25);
+}
+
+body.dark-mode .scenario-col--after .scenario-step__arrow {
+  color: var(--color-resilient);
+}
+
+body.dark-mode .scenario-col--after .scenario-step__text {
+  opacity: 1;
+  color: #E6EDF3;
+}
+
+body.dark-mode .scenario__result {
+  background: rgba(91, 164, 217, 0.2);
+  color: var(--color-resilient);
+}
+
+/* Failure pills — dark blue */
+body.dark-mode .failure-pill {
+  border-color: var(--color-failure);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.dark-mode .failure-pill:hover {
+  background: rgba(27, 58, 92, 0.4);
+  border-color: var(--color-failure);
+}
+
+body.dark-mode .failure-pill.active {
+  background: var(--color-failure);
+  color: white;
+  border-color: var(--color-failure);
+}
+
+/* Failure detail panel */
+body.dark-mode .failure-detail {
+  background: rgba(27, 58, 92, 0.3);
+  border-left-color: var(--color-failure);
+}
+
+body.dark-mode .impact-label {
+  background: var(--color-failure);
+  color: white;
+}
+
+/* Principle/solution cards — resilient capabilities */
+body.dark-mode .principle-card__title {
+  color: var(--color-resilient);
+}
+
+body.dark-mode .principle-card:hover {
+  box-shadow: inset 3px 0 0 var(--color-resilient), 0 10px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Service cards — resilient offerings */
+body.dark-mode .service-card__title {
+  color: var(--color-resilient);
+}
+
+body.dark-mode .service-card:hover {
+  background: #1C2128;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .why-card:hover,
+body.dark-mode .principle-card:hover {
+  background: #1C2128;
+}
+
+/* Industry rows */
+body.dark-mode .industry-row:hover {
+  box-shadow: inset 4px 0 0 var(--color-resilient);
+}
+
+body.dark-mode .industry-row:nth-child(even):hover {
+  box-shadow: inset -4px 0 0 var(--color-resilient);
+}
+
+/* Form inputs */
+body.dark-mode .form-field input,
+body.dark-mode .form-field textarea,
+body.dark-mode .form-field select {
+  background: #0D1117;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+body.dark-mode .form-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238B949E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+/* CTA section */
+body.dark-mode .cta-final {
+  background: #0D1117;
+}
+
+/* Proof bar */
+body.dark-mode .proof-bar {
+  background: #161B22;
+  border-color: var(--border);
+}
+
+/* Image placeholders */
+body.dark-mode .img-placeholder {
+  background: #1C2128;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body.dark-mode .hero__bg-text {
+    animation: none;
+  }
+
+  .matrix-canvas {
+    display: none;
   }
 }

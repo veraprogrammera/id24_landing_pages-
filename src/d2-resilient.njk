@@ -497,6 +497,90 @@ permalink: /d2-resilient/
     if (activePill) activePill.classList.add('active');
   }
 
+  // ---- Matrix Rain ----
+  function createMatrixCanvas() {
+    const hero = document.querySelector('.hero');
+    const canvas = document.createElement('canvas');
+    canvas.classList.add('matrix-canvas');
+    hero.insertBefore(canvas, hero.firstChild);
+    return canvas;
+  }
+
+  function startMatrixRain(canvas) {
+    const ctx = canvas.getContext('2d');
+    const fontSize = 14;
+    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンD|20123456789';
+    let columns, drops;
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.scale(dpr, dpr);
+
+      const spacing = window.innerWidth < 768 ? fontSize * 2 : fontSize;
+      columns = Math.floor(w / spacing);
+      drops = new Array(columns).fill(0).map(() => Math.random() * -50);
+    }
+
+    resize();
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 200);
+    });
+
+    const darkBlue = 'rgba(27, 58, 92, ';
+    const brightBlue = '#5BA4D9';
+
+    setInterval(() => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+
+      // Semi-transparent overlay for trail effect
+      ctx.fillStyle = 'rgba(13, 17, 23, 0.12)';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.font = fontSize + 'px monospace';
+
+      const spacing = window.innerWidth < 768 ? fontSize * 2 : fontSize;
+
+      for (let i = 0; i < columns; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        const x = i * spacing;
+        const y = drops[i] * fontSize;
+
+        // ~8% chance of bright blue "head" character
+        if (Math.random() < 0.08) {
+          ctx.fillStyle = brightBlue;
+          ctx.shadowColor = brightBlue;
+          ctx.shadowBlur = 8;
+        } else {
+          const alpha = 0.4 + Math.random() * 0.5;
+          ctx.fillStyle = darkBlue + alpha + ')';
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.fillText(char, x, y);
+        ctx.shadowBlur = 0;
+
+        // Reset drop when it passes the bottom
+        if (y > h && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }, 33);
+
+    // Fade canvas in
+    requestAnimationFrame(() => {
+      canvas.style.opacity = '0.7';
+    });
+  }
+
   // Init first pill on load
   document.addEventListener('DOMContentLoaded', () => {
     showFailureDetail('processor');
@@ -506,6 +590,35 @@ permalink: /d2-resilient/
         if (!pill.classList.contains('active')) showFailureDetail(pill.dataset.key);
       });
     });
+
+    // ---- Dark Mode Transition (top-down wipe) ----
+    const matrixCanvas = createMatrixCanvas();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    setTimeout(() => {
+      // 1. Place light overlay on top (matches current page bg)
+      document.body.classList.add('dark-wipe');
+
+      // 2. Switch to dark mode behind the overlay
+      document.body.classList.add('dark-mode');
+
+      // 3. Start matrix rain
+      if (!prefersReducedMotion) {
+        startMatrixRain(matrixCanvas);
+      }
+
+      // 4. Slide the overlay away top-to-bottom
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          document.body.classList.add('dark-wipe-go');
+        });
+      });
+
+      // 5. Clean up after animation
+      setTimeout(() => {
+        document.body.classList.remove('dark-wipe', 'dark-wipe-go');
+      }, 450);
+    }, 2000);
   });
 
   // ---- Nav scroll shadow ----
