@@ -1,0 +1,59 @@
+<header class="header">
+
+  <div class="logo">
+        <img src="/assets/logo-id24.png" alt="ID24 Logo">
+    </div>
+
+    <nav class="nav">
+      <a href="#Solutions" class="nav-link">{{uiLabels.solutions}}</a>
+      <a href="#Hardware" class="nav-link">{{uiLabels.hardware}}</a>
+      <a href="#Software" class="nav-link">{{uiLabels.software}}</a>
+      <a href="#AI & Security" class="nav-link">{{uiLabels.aiSecurity}}</a>
+      <a href="#About" class="nav-link">{{uiLabels.aboutUs}}</a>
+      <a href="#Contact Us" class="nav-link">{{uiLabels.contact}}</a>
+      
+    </nav>
+
+
+    <div class="language-switcher">
+        <button class="language-button" id="openPopup" aria-expanded="false" aria-haspopup="true">
+            <span class="language-button-inner">
+            <img src="{{ ui.icons.language }}" alt="" class="language-icon">
+            <span class="language-code">{{ uiLabels.language}}</span>
+            </span>
+        </button>
+
+        <div class="language-popup" id="languagePopup">
+          <a href="/en/dual-input/" class="language-option">
+           {{ uiLabels.english }}
+          </a>
+
+          <a href="/sv/dual-input/" class="language-option">
+         {{ uiLabels.swedish }}
+          </a>
+        </div>
+        
+    </div>
+</header>
+
+<script>
+  const openPopupButton = document.getElementById("openPopup");
+  const langPopup = document.getElementById("languagePopup");
+
+  openPopupButton.addEventListener("click", function () {
+    langPopup.classList.toggle("active");
+
+    const isOpen = langPopup.classList.contains("active");
+    openPopupButton.setAttribute("aria-expanded", isOpen);
+  });
+
+  document.addEventListener("click", function (event) {
+    const switcher = document.querySelector(".language-switcher");
+
+    if (!switcher.contains(event.target)) {
+      langPopup.classList.remove("active");
+      openPopupButton.setAttribute("aria-expanded", "false");
+    }
+  });
+</script>
+

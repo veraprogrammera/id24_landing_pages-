@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="/style.css">
+  {% include "layouts/basehead.njk" %}
 </head>
+
 <body>
+  {% set uiLabels = sv if lang == "sv" else en %}
+  {% include "layouts/components/header.njk" %}
+  {% include "layouts/components/hero.njk" %}
+  {% include "layouts/components/industries.njk" %}
+  {% include "layouts/components/systems.njk" %}
+  {% include "layouts/components/trust-bar.njk" %}
+  {% include "layouts/components/cta.njk" %}
+  {% include "layouts/components/footer.njk" %}
   {{ content | safe }}
+  <script src="/assets/js/product-display.js"></script>
 </body>
 </html>
