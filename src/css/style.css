@@ -50,17 +50,36 @@
 }
 
 .hero-right {
-  flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 520px;
+  position: relative;
 }
 
-.hero-right img {
+.product-showcase {
+  position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 520px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-device {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+}
+
+.product-image {
+  width: 100%;
   height: auto;
-  border-radius: 24px;
   display: block;
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.22));
+  user-select: none;
+  pointer-events: none;
 }
 
 .hero-eyebrow {
@@ -83,7 +102,7 @@
 .hero-title {
   margin: 0 0 24px;
   color: black;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 50px;
   line-height: 1.05;
   font-weight: 700;
@@ -93,7 +112,7 @@
 .hero-text {
   margin: 0 0 32px;
   color: black;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 18px;
   line-height: 1.5;
   text-align: left;
@@ -114,7 +133,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 .cta-group {
@@ -210,6 +229,7 @@
 
 body {
   margin: 0;
+  font-family: 'oswald', sans-serif;
 }
 
 .industries-section {
@@ -225,7 +245,7 @@ body {
 
 .industries-title {
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 40px;
   line-height: 1.1;
   font-weight: 800;
@@ -284,7 +304,7 @@ body {
 }
 
 .industry-card-content h3 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 24px;
   font-weight: 700;
   color: #111;
@@ -352,9 +372,67 @@ body {
   margin: 0 auto;
 }
 
+.content-text {
+  width: 100%;
+}
+
+.systems-section-title {
+  margin: 0 0 32px;
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.feature-icon-box {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: rgba(244, 124, 92, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.feature-copy h4 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.feature-copy p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #5a6673;
+  max-width: 520px;
+}
+
 .content-image img {
   width: 100%;
   border-radius: 20px;
+  display: block;
 }
 
 .feature {
@@ -371,6 +449,122 @@ body {
   display: block;
 }
 
+.awards-strip {
+  padding: 32px 0 16px;
+}
+
+.awards-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  justify-items: center;
+}
+
+.awards-heading {
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.awards-heading__title {
+  margin: 0 0 12px;
+  font-size: 64px;
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #162033;
+  font-family: 'Oswald', sans-serif;
+}
+
+.awards-heading__subtitle {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.35;
+  color: #5c667a;
+  font-weight: 500;
+  font-family: 'Oswald', sans-serif;
+}
+
+.award-chip {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  padding: 24px 28px;
+  max-width: 190px;
+  width: 100%;
+  min-height: 50px;
+}
+
+.award-chip__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  background: #f89a7b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.award-chip__icon span {
+  font-size: 15px;
+  line-height: 1;
+  color: #fff;
+}
+
+.award-chip__text h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #162033;
+}
+
+.award-chip__text p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #5c667a;
+}
+
+@media (max-width: 1200px) {
+  .awards-strip__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .awards-strip__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .award-chip {
+    padding: 20px;
+    min-height: 112px;
+    border-radius: 20px;
+  }
+
+  .award-chip__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+  }
+
+  .award-chip__icon span {
+    font-size: 28px;
+  }
+
+  .award-chip__text h3 {
+    font-size: 22px;
+  }
+
+  .award-chip__text p {
+    font-size: 18px;
+  }
+}
+
 .bottom-cta {
   background: #f7f7f5;
   padding: 60px 20px 60px;
@@ -383,7 +577,7 @@ body {
 }
 
 .bottom-cta-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 32px;
   line-height: 1.05;
   font-weight: 800;
@@ -400,9 +594,11 @@ body {
 
 .bottom-cta-buttons {
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   gap: 20px;
   flex-wrap: wrap;
+  flex-direction: column;
+  width: 240px;
   margin-bottom: 28px;
 }
 
@@ -442,6 +638,8 @@ body {
 .bottom-cta-trust {
   margin: 0;
   font-size: 18px;
+  flex-direction: column;
+  display: flex;
   color: #667085;
 }
 
@@ -478,7 +676,7 @@ body {
 }
 
 .footer-brand-name {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-weight: 800;
   font-size: 20px;
   color: #0f172a;
@@ -505,7 +703,7 @@ body {
 
 .footer-links-group h3 {
   margin: 0 0 18px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 17px;
   font-weight: 700;
   color: #0f172a;
