@@ -12,8 +12,8 @@
   --text-muted: #5C5A57;
   --text-light: #8C8A87;
   --border: #D8D6D3;
-  --font-heading: 'Barlow Condensed', sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Open Sans', system-ui, sans-serif;
   --max-w: 1160px;
   --radius: 6px;
 }
@@ -233,10 +233,49 @@ ul {
   margin: 0 8px;
 }
 
-.nav__cta {
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-left: auto;
+}
+
+.nav__cta {
   padding: 9px 20px;
   font-size: 0.875rem;
+}
+
+.nav__theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.nav__theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+/* Show sun in dark mode, moon in light mode */
+.nav__theme-icon--sun {
+  display: none;
+}
+
+body.dark-mode .nav__theme-icon--sun {
+  display: block;
+}
+
+body.dark-mode .nav__theme-icon--moon {
+  display: none;
 }
 
 /* =========================================
@@ -1295,12 +1334,9 @@ ul {
     display: none;
   }
 
-  .nav__inner {
-    justify-content: space-between;
-  }
-
   .nav__cta {
-    margin-left: 0;
+    padding: 8px 16px;
+    font-size: 0.8rem;
   }
 
   /* ---- Hero ---- */
