@@ -1262,20 +1262,109 @@ ul {
 }
 
 @media (max-width: 768px) {
+  /* Section padding */
   .section {
-    padding: 64px 0;
+    padding: 48px 0;
   }
 
+  .hero {
+    padding: 56px 0 48px;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .cta-final {
+    padding: 56px 0;
+  }
+
+  .contact-section {
+    padding: 48px 0;
+  }
+
+  .footer {
+    padding: 40px 0 24px;
+  }
+
+  /* Font sizes */
+  .h1 {
+    font-size: clamp(1.8rem, 7vw, 2.2rem);
+  }
+
+  .h2 {
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+  }
+
+  .hero__sub {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .hero__label {
+    margin-bottom: 12px;
+  }
+
+  .solution__result-banner__text {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .service-card__title {
+    font-size: 1.2rem;
+  }
+
+  .industry-row__title {
+    font-size: 1.5rem;
+  }
+
+  /* Component spacing */
+  .problem__title-wrap {
+    margin-bottom: 28px;
+  }
+
+  .solution__result-banner {
+    padding: 40px 24px;
+    margin-top: 40px;
+  }
+
+  .industry-row__text {
+    padding: 28px 20px;
+  }
+
+  .service-card {
+    padding: 24px;
+  }
+
+  .why-card {
+    padding: 24px 20px;
+  }
+
+  .principle-card {
+    padding: 20px 16px;
+  }
+
+  .failure-detail {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .proof-bar {
+    padding: 20px 0;
+  }
+
+  /* Nav */
   .nav__links {
     display: none;
   }
 
+  /* Hero bg */
   .hero__bg-img-wrap { width: 100%; }
   .hero__bg-img { opacity: 0.15; }
   .hero__bg-img-wrap::after {
     background: linear-gradient(to right, var(--bg) 10%, transparent 60%);
   }
 
+  /* Grids → single column */
   .problem__cols {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -1293,8 +1382,9 @@ ul {
     grid-template-columns: 1fr;
   }
 
+  /* Hide empty image placeholders on mobile */
   .industry-row__visual {
-    min-height: 160px;
+    display: none;
   }
 
   .industry-row:nth-child(even) .industry-row__text {
@@ -1313,14 +1403,28 @@ ul {
     grid-template-columns: 1fr;
   }
 
+  .scenario-col__body {
+    padding: 16px;
+  }
+
+  .scenario-col__head {
+    padding: 12px 16px;
+  }
+
+  .scenario__result {
+    padding: 16px;
+  }
+
   .contact-section__inner {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 32px;
   }
 
   .footer__top {
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    gap: 20px;
+    padding-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   .proof-bar__inner {
@@ -1338,6 +1442,26 @@ ul {
 }
 
 @media (max-width: 480px) {
+  .section {
+    padding: 36px 0;
+  }
+
+  .hero {
+    padding: 40px 0 36px;
+  }
+
+  .h1 {
+    font-size: 1.7rem;
+  }
+
+  .h2 {
+    font-size: 1.4rem;
+  }
+
+  .cta-final {
+    padding: 40px 0;
+  }
+
   .principles-grid {
     grid-template-columns: 1fr;
   }
@@ -1353,6 +1477,15 @@ ul {
   .btn-group {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .failure-pills {
+    gap: 6px;
+  }
+
+  .failure-pill {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
 }
 
