@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "eleventy",
+      "runtimeExecutable": "/usr/local/bin/node",
+      "runtimeArgs": ["/usr/local/bin/npx", "@11ty/eleventy", "--serve", "--port=8080"],
+      "env": { "PATH": "/usr/local/bin:/usr/bin:/bin" },
+      "port": 8080
+    }
+  ]
+}
