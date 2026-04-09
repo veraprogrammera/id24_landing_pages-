@@ -279,6 +279,13 @@ permalink: /d2-resilient/
   <div class="container">
     <span class="scenario__label" data-reveal>Example Scenario</span>
     <h2 class="h-display h2 scenario__title" data-reveal>Retail Network Failure</h2>
+    <div class="scenario-toggle">
+      <span class="scenario-toggle__label" data-scenario="before">Without</span>
+      <button class="scenario-toggle__switch is-on" aria-label="Toggle scenario">
+        <span class="scenario-toggle__knob"></span>
+      </button>
+      <span class="scenario-toggle__label is-active" data-scenario="after">With D|2</span>
+    </div>
     <div class="scenario__cols">
       <div class="scenario-col scenario-col--before" data-reveal data-delay="0">
         <div class="scenario-col__head">Without D|2</div>
@@ -305,7 +312,7 @@ permalink: /d2-resilient/
           </div>
         </div>
       </div>
-      <div class="scenario-col scenario-col--after" data-reveal data-delay="1">
+      <div class="scenario-col scenario-col--after is-active" data-reveal data-delay="1">
         <div class="scenario-col__head">With D|2 Architecture</div>
         <div class="scenario-col__body">
           <div class="scenario-step">
@@ -590,6 +597,49 @@ permalink: /d2-resilient/
         if (!pill.classList.contains('active')) showFailureDetail(pill.dataset.key);
       });
     });
+
+    // ---- Accordion cards (mobile) ----
+    if (window.innerWidth <= 768) {
+      function setupAccordion(selector) {
+        document.querySelectorAll(selector).forEach(card => {
+          card.addEventListener('click', () => {
+            const wasOpen = card.classList.contains('is-open');
+            document.querySelectorAll(selector + '.is-open').forEach(c => c.classList.remove('is-open'));
+            if (!wasOpen) card.classList.add('is-open');
+          });
+        });
+      }
+      setupAccordion('.principle-card');
+      setupAccordion('.why-card');
+
+      // Scenario toggle
+      const scenarioSwitch = document.querySelector('.scenario-toggle__switch');
+      const scenarioLabels = document.querySelectorAll('.scenario-toggle__label');
+      const colBefore = document.querySelector('.scenario-col--before');
+      const colAfter = document.querySelector('.scenario-col--after');
+
+      function setScenario(showAfter) {
+        scenarioSwitch.classList.toggle('is-on', showAfter);
+        colBefore.classList.toggle('is-active', !showAfter);
+        colAfter.classList.toggle('is-active', showAfter);
+        scenarioLabels.forEach(l => {
+          l.classList.toggle('is-active', l.dataset.scenario === (showAfter ? 'after' : 'before'));
+        });
+      }
+
+      // Default: show "With D|2"
+      setScenario(true);
+
+      scenarioSwitch.addEventListener('click', () => {
+        setScenario(!scenarioSwitch.classList.contains('is-on'));
+      });
+
+      scenarioLabels.forEach(label => {
+        label.addEventListener('click', () => {
+          setScenario(label.dataset.scenario === 'after');
+        });
+      });
+    }
 
     // ---- Dark Mode Transition (top-down wipe) ----
     const matrixCanvas = createMatrixCanvas();
