@@ -38,10 +38,10 @@ permalink: /d2-resilient/
     <img src="" alt="" class="hero__bg-img">
   </div>
   <div class="hero__inner">
-    <span class="hero__label">Resilient Tech Solutions</span>
-    <h1 class="h-display h1 hero__title">When Critical Systems Fail,<br>Your Business Shouldn't</h1>
-    <p class="hero__sub">Resilience technology and advisory for banks, retailers and hotels. Design systems that keep operating even when networks, processors or payment providers go down.</p>
-    <div class="btn-group">
+    <span class="hero__label hero--hidden">Resilient Tech Solutions</span>
+    <h1 class="h-display h1 hero__title matrix-typing" id="hero-title">&nbsp;</h1>
+    <p class="hero__sub hero--hidden">Resilience technology and advisory for banks, retailers and hotels. Design systems that keep operating even when networks, processors or payment providers go down.</p>
+    <div class="btn-group hero--hidden">
       <a href="#contact" class="btn btn--primary">Talk to an Expert</a>
     </div>
   </div>
@@ -60,8 +60,8 @@ permalink: /d2-resilient/
         <span class="proof-stat__label">Countries</span>
       </div>
       <div class="proof-stat" data-reveal data-delay="2">
-        <span class="proof-stat__num">AAA</span>
-        <span class="proof-stat__label">Rated</span>
+        <span class="proof-stat__num">UIC</span>
+        <span class="proof-stat__label">Accelerator Company</span>
       </div>
     </div>
   </div>
@@ -360,55 +360,31 @@ permalink: /d2-resilient/
 <div class="cta-final">
   <div class="cta-final__inner" data-reveal>
     <h2 class="h-display h2 cta-final__title">Build Resilient Operations</h2>
-    <p class="cta-final__sub">Outages are inevitable. Operational paralysis is not. Talk to D|2 about building payment systems that never stop.</p>
-    <div class="btn-group" style="justify-content: center;">
-      <a href="#contact" class="btn btn--primary">Contact Us</a>
-    </div>
+    <p class="cta-final__sub">Outages are inevitable. Operational paralysis is not. Talk to us about building critical systems that never stop.</p>
   </div>
 </div>
 
 <!-- #Contact -->
 <section class="contact-section" id="contact">
   <div class="contact-section__inner">
-    <div class="contact-info" data-reveal>
+    <div class="contact-info contact-info--full" data-reveal>
       <span class="section-label">Get in Touch</span>
       <h2 class="h-display h3 contact-info__title">Let's Talk Resilience</h2>
-      <p class="contact-info__desc">Whether you're assessing risk, planning an architecture overhaul, or need a partner for a pilot deployment, we'd love to hear from you.</p>
-      <div class="contact-detail">
-        <div class="contact-detail__item">Stockholm, Sweden</div>
-        <div class="contact-detail__item">Serving clients in 20+ countries</div>
-        <div class="contact-detail__item">UIC Accelerator 2026–2027</div>
+      <div class="contact-card">
+        <div class="contact-card__name">Johan Mattsson</div>
+        <div class="contact-card__role">Director</div>
+        <div class="contact-card__org">D|2 Group / Innovation Stable</div>
+        <address class="contact-card__address">
+          Dag Hammarskjölds Väg 58C<br>
+          752 37 Uppsala
+        </address>
+        <div class="contact-card__email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 20" class="contact-card__email-img" role="img" aria-label="Email address">
+            <text x="140" y="15" text-anchor="middle" font-family="Open Sans, sans-serif" font-size="14" fill="currentColor">johan.mattsson@d2group.org</text>
+          </svg>
+        </div>
       </div>
     </div>
-    <form class="contact-form" action="#" method="POST" data-reveal data-delay="1">
-      <div class="form-field">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Your name" required>
-      </div>
-      <div class="form-field">
-        <label for="email">Work Email</label>
-        <input type="email" id="email" name="email" placeholder="you@company.com" required>
-      </div>
-      <div class="form-field">
-        <label for="company">Company</label>
-        <input type="text" id="company" name="company" placeholder="Your organization">
-      </div>
-      <div class="form-field">
-        <label for="interest">I'm interested in</label>
-        <select id="interest" name="interest">
-          <option value="">Select a service...</option>
-          <option value="advisory">Resilience Advisory</option>
-          <option value="software">Software & Integration</option>
-          <option value="implementation">Implementation</option>
-          <option value="other">General Enquiry</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us about your situation..."></textarea>
-      </div>
-      <button type="submit" class="btn btn--primary">Send Message</button>
-    </form>
   </div>
 </section>
 
@@ -449,7 +425,7 @@ permalink: /d2-resilient/
     </div>
     <div class="footer__bottom">
       <span>© 2026 D|2 Group. All rights reserved.</span>
-      <span>Founded 2025 · Stockholm, Sweden</span>
+      <span>Founded 2025 · Uppsala, Sweden</span>
     </div>
   </div>
 </footer>
@@ -684,6 +660,19 @@ permalink: /d2-resilient/
       isDark = true;
 
       if (withWipe) {
+        const heroTitle = document.getElementById('hero-title');
+        const heroLabel = document.querySelector('.hero__label');
+        const heroSub = document.querySelector('.hero__sub');
+        const heroBtnGroup = document.querySelector('.hero .btn-group');
+        heroTitle.innerHTML = '&nbsp;';
+        heroTitle.classList.add('matrix-typing');
+        heroLabel.classList.add('hero--hidden');
+        heroLabel.classList.remove('hero--visible');
+        heroSub.classList.add('hero--hidden');
+        heroSub.classList.remove('hero--visible');
+        heroBtnGroup.classList.add('hero--hidden');
+        heroBtnGroup.classList.remove('hero--visible');
+
         document.body.classList.add('dark-wipe');
         document.body.classList.add('dark-mode');
         if (!prefersReducedMotion) {
@@ -697,6 +686,22 @@ permalink: /d2-resilient/
         setTimeout(() => {
           document.body.classList.remove('dark-wipe', 'dark-wipe-go');
         }, 450);
+
+        // After 2s of matrix rain, type out the heading
+        setTimeout(() => {
+          typeMatrixText(heroTitle, [
+            "When Critical Systems Fail,",
+            "Your Business Shouldn't"
+          ], function() {
+            // Fade in surrounding text after typing completes
+            heroLabel.classList.remove('hero--hidden');
+            heroLabel.classList.add('hero--visible');
+            heroSub.classList.remove('hero--hidden');
+            heroSub.classList.add('hero--visible');
+            heroBtnGroup.classList.remove('hero--hidden');
+            heroBtnGroup.classList.add('hero--visible');
+          });
+        }, 2000);
       } else {
         document.body.classList.add('dark-mode');
         if (!prefersReducedMotion) {
@@ -714,6 +719,65 @@ permalink: /d2-resilient/
         matrixInterval = null;
       }
       matrixCanvas.style.opacity = '0';
+      // Restore original heading and visibility
+      const heroTitle = document.getElementById('hero-title');
+      heroTitle.classList.remove('matrix-typing');
+      heroTitle.innerHTML = "When Critical Systems Fail,<br>Your Business Shouldn't";
+      document.querySelector('.hero__label').classList.remove('hero--hidden');
+      document.querySelector('.hero__label').classList.add('hero--visible');
+      document.querySelector('.hero__sub').classList.remove('hero--hidden');
+      document.querySelector('.hero__sub').classList.add('hero--visible');
+      document.querySelector('.hero .btn-group').classList.remove('hero--hidden');
+      document.querySelector('.hero .btn-group').classList.add('hero--visible');
+    }
+
+    // ---- Matrix typing effect ----
+    function typeMatrixText(element, lines, callback) {
+      element.innerHTML = '';
+      element.classList.add('matrix-typing');
+      let lineIdx = 0;
+      let charIdx = 0;
+      const cursor = document.createElement('span');
+      cursor.className = 'matrix-cursor';
+      cursor.textContent = '|';
+
+      function typeNext() {
+        if (lineIdx >= lines.length) {
+          cursor.remove();
+          element.classList.remove('matrix-typing');
+          if (callback) callback();
+          return;
+        }
+
+        const line = lines[lineIdx];
+        if (charIdx === 0 && lineIdx > 0) {
+          element.appendChild(document.createElement('br'));
+        }
+
+        if (charIdx < line.length) {
+          // Remove cursor, add char, re-add cursor
+          cursor.remove();
+          // Get or create the text node for current line
+          const textNodes = element.childNodes;
+          const lastNode = textNodes[textNodes.length - 1];
+          if (lastNode && lastNode.nodeType === 3) {
+            lastNode.textContent += line[charIdx];
+          } else {
+            element.appendChild(document.createTextNode(line[charIdx]));
+          }
+          element.appendChild(cursor);
+          charIdx++;
+          const delay = 30 + Math.random() * 40;
+          setTimeout(typeNext, delay);
+        } else {
+          lineIdx++;
+          charIdx = 0;
+          setTimeout(typeNext, 100);
+        }
+      }
+
+      element.appendChild(cursor);
+      typeNext();
     }
 
     // Auto-trigger after 2s
