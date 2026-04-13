@@ -7,11 +7,17 @@ permalink: /d2-resilient/
 <!-- #Nav -->
 <nav class="nav" id="main-nav">
   <div class="nav__inner">
-    <a href="/d2-resilient/" class="nav__logo">D<span>|</span>2</a>
+    <a href="/d2-resilient/" class="nav__logo">
+      <img src="/assets/D2_black.PNG" alt="D|2 Group" class="nav__logo-img nav__logo-img--light nav__logo-img--full">
+      <img src="/assets/D2_white.PNG" alt="D|2 Group" class="nav__logo-img nav__logo-img--dark nav__logo-img--full">
+      <!-- Compact logos (shown when scrolled) -->
+      <img src="/assets/D2_black_mini.PNG" alt="D|2" class="nav__logo-img nav__logo-img--light nav__logo-img--compact">
+      <img src="/assets/D2_white_mini.PNG" alt="D|2" class="nav__logo-img nav__logo-img--dark nav__logo-img--compact">
+    </a>
     <ul class="nav__links">
       <li><a href="#services">Services</a></li>
       <li><a href="#industries">Industries</a></li>
-      <li><a href="#why">Why D|2</a></li>
+      <li><a href="#why">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav__right">
@@ -33,7 +39,7 @@ permalink: /d2-resilient/
   </div>
   <div class="hero__inner">
     <span class="hero__label">Resilient Tech Solutions</span>
-    <h1 class="h-display h1 hero__title">When Payment Systems Fail,<br>Your Business Shouldn't</h1>
+    <h1 class="h-display h1 hero__title">When Critical Systems Fail,<br>Your Business Shouldn't</h1>
     <p class="hero__sub">Resilience technology and advisory for banks, retailers and hotels. Design systems that keep operating even when networks, processors or payment providers go down.</p>
     <div class="btn-group">
       <a href="#contact" class="btn btn--primary">Talk to an Expert</a>
@@ -411,7 +417,9 @@ permalink: /d2-resilient/
   <div class="footer__inner">
     <div class="footer__top">
       <div>
-        <div class="footer__logo">D<span>|</span>2</div>
+        <div class="footer__logo">
+          <img src="/assets/D2_white.PNG" alt="D|2 Group" class="footer__logo-img">
+        </div>
         <p class="footer__tagline">Resilient payments and operational continuity for banks, retailers and hotels.</p>
       </div>
       <div>
@@ -447,6 +455,22 @@ permalink: /d2-resilient/
 </footer>
 
 <!-- #JS -->
+<script>
+  // ---- Sticky nav scroll detection ----
+  (function() {
+    const nav = document.getElementById('main-nav');
+    let scrolled = false;
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 80 && !scrolled) {
+        nav.classList.add('nav--scrolled');
+        scrolled = true;
+      } else if (window.scrollY <= 80 && scrolled) {
+        nav.classList.remove('nav--scrolled');
+        scrolled = false;
+      }
+    });
+  })();
+</script>
 <script>
   // ---- Failure pill interactive panel ----
   const FAILURE_DATA = {

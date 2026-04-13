@@ -184,6 +184,11 @@ ul {
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 0 24px;
+  transition: background 0.3s;
+}
+
+.nav--scrolled .nav__inner {
+  height: 52px;
 }
 
 .nav__inner {
@@ -193,19 +198,52 @@ ul {
   align-items: center;
   height: 68px;
   gap: 40px;
+  transition: height 0.3s;
 }
 
 .nav__logo {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.75rem;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
 }
 
-.nav__logo span {
-  color: var(--coral);
+.nav__logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+/* Default: hide dark variant and all compact logos */
+.nav__logo-img--dark,
+.nav__logo-img--compact {
+  display: none;
+}
+
+/* Dark mode: swap light/dark */
+body.dark-mode .nav__logo-img--light.nav__logo-img--full {
+  display: none;
+}
+
+body.dark-mode .nav__logo-img--dark.nav__logo-img--full {
+  display: block;
+}
+
+/* Scrolled state: hide full logos, show compact */
+.nav--scrolled .nav__logo-img--full {
+  display: none !important;
+}
+
+.nav--scrolled .nav__logo-img--compact.nav__logo-img--light {
+  display: block;
+}
+
+body.dark-mode .nav--scrolled .nav__logo-img--compact.nav__logo-img--light {
+  display: none;
+}
+
+body.dark-mode .nav--scrolled .nav__logo-img--compact.nav__logo-img--dark {
+  display: block;
 }
 
 .nav__links {
@@ -978,15 +1016,13 @@ body.dark-mode .nav__theme-icon--moon {
 }
 
 .footer__logo {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 2rem;
-  color: white;
   margin-bottom: 12px;
 }
 
-.footer__logo span {
-  color: var(--coral);
+.footer__logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 .footer__tagline {
