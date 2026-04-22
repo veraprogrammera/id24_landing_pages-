@@ -4,9 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600&family=Oswald:wght@700&display=swap" rel="stylesheet">
+  
     <link rel="stylesheet" href="/style.css">
+    <script src="/assets/scroll-animations.js" defer></script>
 </head>
+
+
 <body>
+
+
+
+<header class="navbar">
+    <a href="/" class="logo">
+      <img src="/assets/deviatiq-logo.jpg" alt="Deviatiq" class="navbar-image-logo">
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact </a></li>
+      </ul>
+    </nav>
+  </header>
+
+      <main>
 {{ content }}
+</main>
+
+<footer class="site-footer">
+    <div class="footer-brand">
+      <img src="/assets/deviatiq-logo.jpg" alt="Deviatiq - Part of ID24" class="footer-image-logo">
+      <p style="font-size: 14px; margin-top: 10px; color: #6b7280;">AI for safer, more reliable checkouts.</p>
+    </div>
+    
+    <div class="footer-copyright">
+      © 2026 Deviatiq. All rights reserved.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+  // En funktion för att slippa skriva samma inställningar två gånger
+  function loadParticles(id) {
+    if(document.getElementById(id)) {
+      particlesJS(id, {
+        "particles": {
+          "number": { "value": 50 },
+          "color": { "value": "#e3aebc" },
+          "shape": { "type": "circle" },
+          "opacity": { "value": 0.5 },
+          "size": { "value": 3 },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#e3aebc",
+            "opacity": 0.4,
+            "width": 1
+          },
+          "move": { "enable": true, "speed": 2 }
+        },
+        "interactivity": {
+          "events": {
+            "onhover": { "enable": true, "mode": "grab" }
+          }
+        }
+      });
+    }
+  }
+
+  // Starta partiklarna för båda sektionerna
+  // Starta partiklarna för sektionerna
+  loadParticles("particles-hero"); // <-- Ny rad för din hero!
+</script>
+
+
 </body>
 </html>

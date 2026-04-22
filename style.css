@@ -1,1 +1,573 @@
- 
+/* Custom Spring Animation Generator */
+:root {
+  --spring-easing: linear(0, 0.024, 0.068 1%, 0.22 2.2%, 0.968 6.1%, 1.221 7.7%, 1.314, 1.383, 1.426 10%, 1.438, 1.445, 1.447, 1.445 11.4%, 1.432, 1.405, 1.365 13.4%, 1.272 14.6%, 1.004 17.7%, 0.892 19.3%, 0.855, 0.828, 0.811, 0.802, 0.802, 0.808, 0.819, 0.837 24.8%, 0.879 26.1%, 0.998 29.1%, 1.048 30.8%, 1.076 32.2%, 1.084, 1.088 33.6%, 1.086, 1.077, 1.059 37.2%, 1.006 40.3%, 0.984 41.7%, 0.968 43.4%, 0.963, 0.961 45%, 0.962, 0.966 47.3%, 1.007 53.2%, 1.014, 1.017 56.4%, 1.015 58.8%, 0.997 64.6%, 0.992 67.8%, 0.993 70.2%, 1.001 75.9%, 1.003 78.9%, 0.999 90.2%, 1);
+}
+
+/* --- BASE SETTINGS --- */
+body {
+  font-family: 'Open Sans', sans-serif; 
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;          
+  text-transform: uppercase; 
+  letter-spacing: 1px;       
+}
+
+.text-center {
+  text-align: center;
+}
+
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- THEMES --- */
+.section-light {
+  background-color: #e8e8e8;  
+  color: #1f2937;             
+  padding: 80px 5%;
+  position: relative;
+}
+
+.section-light h1, .section-light h2, .section-light h3 {
+  color: #a855f7; /* LILA i ljusa sektioner */
+  margin: 0;
+}
+
+.section-light p { color: #1f2937; }
+
+.section-light .content-grid {
+  display: grid;
+  gap: 30px;
+  background-color: #d9d9d9;  
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.section-dark {
+  background-color: #3a3a3a;  
+  color: #fdf2f5;             
+  padding: 80px 5%;
+  position: relative;
+}
+
+.section-dark h1, .section-dark h2, .section-dark h3 {
+  color: #d8b4fe; /* LJUSLILA i mörka sektioner */
+  margin: 0;
+}
+
+.section-dark p { color: #fdf2f5; }
+
+.section-dark .content-grid {
+  display: grid;
+  gap: 30px;
+  background-color: #4a4a4a;  
+  padding: 40px;
+  border-radius: 8px;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #4b5563; 
+  text-decoration: none;
+  font-size: 16px;
+  transition: transform 0.2s ease; 
+  display: inline-block;
+}
+
+.nav-links a:hover {
+  transform: scale(1.1); 
+  color: #a855f7; /* Lila hover-effekt i menyn */
+}
+
+/* --- BILDLOGGA I NAVBAR --- */
+.navbar-image-logo {
+  height: 40px; 
+  width: auto;  
+  display: block;
+  border-radius: 4px; 
+}
+
+.logo {
+  text-decoration: none;
+}
+
+/* --- BUTTONS --- */
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s ease, background-color 0.2s ease; 
+}
+
+.btn:hover {
+  transform: scale(1.05); 
+}
+
+/* Ersätt alla gamla knappar med det lila temat */
+.btn-primary, .btn-purple {
+  background-color: #a855f7;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover, .btn-purple:hover {
+  background-color: #9333ea;
+}
+
+.btn-outline, .btn-outline-purple {
+  background: transparent;
+  color: #d8b4fe;
+  border: 1px solid #d8b4fe;
+}
+
+.btn-outline:hover, .btn-outline-purple:hover {
+  background-color: rgba(216, 180, 254, 0.1);
+}
+
+/* För knappar på ljus bakgrund behöver outline-knappen vara mörkare */
+.section-light .btn-outline {
+  color: #a855f7;
+  border-color: #a855f7;
+}
+
+.section-light .btn-outline:hover {
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+
+/* --- HERO SECTION --- */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section.center-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  min-height: 60vh; 
+  padding-top: 120px; 
+  padding-bottom: 80px;
+}
+
+.hero-section.center-hero .hero-content {
+  max-width: 1000px; 
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1; 
+}
+
+.hero-section.center-hero h1 {
+  font-size: 72px; 
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.hero-section.center-hero h1.hero-heading-purple {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: #e9d5ff; 
+}
+
+.hero-section.center-hero p.hero-text-light {
+  font-size: 22px; 
+  max-width: 800px; 
+  margin: 0 auto 40px auto; 
+  color: #e5dada !important;
+}
+
+.eyebrow {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a855f7 !important; /* Lila eyebrow globalt */
+  font-weight: 700;
+  font-size: 14px !important;
+  margin-bottom: 15px !important;
+}
+
+.hero-eyebrow-purple {
+  color: #d8b4fe !important; 
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* --- TRUST STRIP --- */
+.trust-strip {
+  background-color: #1f2937;
+  color: #9ca3af;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.trust-strip .dot {
+  color: #a855f7; /* Lila dot */
+}
+
+/* --- GENERAL SECTIONS --- */
+section h2 {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 60px;
+}
+
+/* --- THE PROBLEM --- */
+.problem.section-dark {
+  padding-bottom: 20px; 
+}
+
+.problem .content-wrapper {
+  margin-bottom: 0; 
+}
+
+/* --- STATS GRID --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 40px auto 0 auto;
+}
+
+.stat-box {
+  background-color: #4a4a4a;
+  padding: 30px;
+  border-radius: 8px;
+  border-top: 4px solid #d8b4fe; /* Ljuslila linje i toppen */
+  text-align: center;
+}
+
+.stat-box h3 {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #fdf2f5;
+}
+
+/* --- HOW IT WORKS (CARDS) --- */
+.how-it-works {
+  padding: 100px 5%;
+}
+
+.steps-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  text-align: center;
+}
+
+.step {
+  flex: 1;
+  max-width: 320px;
+  aspect-ratio: 1; 
+  background-color: #f3e8ff; /* Mycket ljus lila bakgrund för korten i ljusa sektioner */
+  border: 1px solid #e9d5ff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  will-change: transform, border-radius;
+  transition: transform 0.3s ease, border-radius 0.5s ease-in-out; 
+}
+
+.step:hover {
+  transform: translateY(-15px); 
+  transition: transform 1.3s var(--spring-easing), border-radius 0.6s ease-in-out;
+}
+
+.step:nth-child(1) { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; }
+.step:nth-child(1):hover { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+.step:nth-child(2) { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+.step:nth-child(2):hover { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
+.step:nth-child(3) { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
+.step:nth-child(3):hover { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; }
+
+.section-dark .step {
+  background-color: #4a4748; 
+  border: 1px solid rgba(216, 180, 254, 0.2); /* Ljuslila border i mörka läget */
+  color: #fdf2f5;
+}
+
+.section-dark .step p { color: #e5dada; }
+
+.step-number {
+  background: linear-gradient(135deg, #a855f7, #d8b4fe); /* Lila gradient */
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  font-weight: bold;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3); /* Lila shadow */
+}
+
+.step h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #1f2937;
+}
+
+.step p {
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* --- FEATURES GRID --- */
+.features-section {
+  padding: 100px 5%;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto 60px auto;
+  text-align: left;
+}
+
+.features-grid-section .content-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.features-grid-section .content-grid h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.feature-item {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #fdf2f5;
+  transition: transform 0.2s ease;
+}
+
+.feature-item:hover {
+  transform: translateX(8px);
+}
+
+.checkmark {
+  color: #d8b4fe; /* Ljuslila bock */
+  font-weight: bold;
+  font-size: 28px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(216, 180, 254, 0.15); /* Ljuslila bakgrund för bocken */
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* --- SOCIAL PROOF QUOTES --- */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.quote-box {
+  background-color: #4a4748;
+  padding: 40px;
+  border-radius: 8px;
+  border-left: 4px solid #d8b4fe; /* Ljuslila linje på citaten */
+  margin: 0;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.quote-box footer {
+  margin-top: 20px;
+  font-size: 16px;
+  font-style: normal;
+  color: #d8b4fe; /* Ljuslila för författaren */
+  font-weight: 600;
+}
+
+.quote-box cite {
+  color: #e5dada;
+  font-weight: normal;
+}
+
+/* --- FAQ SECTION --- */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+/* --- PARTICLES SETUP --- */
+.particle-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ändrat så att partiklarna bara körs i hero */
+#particles-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.particle-section > *:not(#particles-hero) {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- FOOTER --- */
+.site-footer {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 60px 5% 40px 5%; 
+  color: #6b7280; 
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- BILDLOGGA I FOOTER --- */
+.footer-image-logo {
+  max-width: 250px; 
+  height: auto;
+  display: block;
+}
+
+.footer-copyright {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* --- RESPONSIVE / MOBILE --- */
+@media (max-width: 768px) {
+  .hero-section.center-hero {
+    padding-top: 80px; 
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .who-its-for .content-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* --- NYA GRÅA TONER FÖR MÖRKA SEKTIONER --- */
+
+/* 1. Låser fast Hero-sektionen till din ursprungliga gråa färg */
+.hero-section.section-dark {
+  background-color: #3a3a3a;
+}
+
+/* 2. Ger alla andra mörka sektioner en djupare, elegant zink/grafit-grå ton */
+.section-dark {
+  background-color: #27272a; 
+}
+
+/* 3. Justerar bakgrundsfärgen på kort, stat-boxar och citat-rutor så att de 
+      smälter in snyggt och naturligt mot den nya, mörkare bakgrunden */
+.section-dark .content-grid,
+.section-dark .step,
+.stat-box,
+.quote-box {
+  background-color: #3f3f46; 
+}
